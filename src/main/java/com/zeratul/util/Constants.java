@@ -8,6 +8,16 @@ public class Constants {
      */
     public static final String ZOOKEEPER_FILE_PATH = "/zookeeper.properties";
 
+    /**
+     * 数据库配置文件路径
+     */
+    public static final String DATA_BASE_FILE_PATH = "/database.properties";
+
+    /**
+     * 测试相关配置文件路径
+     */
+    public static final String TEST_CONF_FILE_PATH = "/test.properties";
+
 	/**
 	 * 期望结果，为 Y 时才执行断言
 	 */

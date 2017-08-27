@@ -1,6 +1,8 @@
 package com.zeratul.util;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @author dreamyao
@@ -26,5 +28,29 @@ public final class FileUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 从文件路径加载配置文件
+     * @param filePath 文件路径
+     * @return         Properties集合
+     */
+    public static Properties getProperties(String filePath) {
+        return getProperties(getFileInputStream(filePath));
+    }
+
+    /**
+     * 从输入流中加载配置文件
+     * @param stream 输入流
+     * @return       Properties集合
+     */
+    public static Properties getProperties(InputStream stream) {
+        Properties properties = new Properties();
+        try {
+            properties.load(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
     }
 }
