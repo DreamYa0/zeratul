@@ -24,6 +24,18 @@ public class DubboService {
     private TestEnv env = TestEnv.test;
     private Cache<String, Object> dubboServiceCache = CacheBuilder.newBuilder().build();
 
+    public DubboService(){
+        EnvConfig envConfig = new EnvConfig();
+        env = envConfig.getEnv();
+        ZookeeperConfig config = new ZookeeperConfig();
+        String host = config.getZkHosts().getProperty(env.name());
+        if (host != null) {
+            initDubbo(host);
+        } else {
+            throw new RuntimeException("----------------初始化Dubbo环境失败！----------------");
+        }
+    }
+
     public DubboService(TestEnv env) {
         this.env = env;
         ZookeeperConfig config = new ZookeeperConfig();

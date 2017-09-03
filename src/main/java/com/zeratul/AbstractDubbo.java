@@ -1,6 +1,7 @@
 package com.zeratul;
 
 import com.zeratul.base.TestBase;
+import com.zeratul.dubbo.DubboService;
 import com.zeratul.exception.ParameterException;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
@@ -23,6 +24,11 @@ import static java.util.Optional.ofNullable;
  */
 public abstract class AbstractDubbo<T> extends TestBase implements IHookable,ITestBase{
 
+    private DubboService dubboService;
+
+    public void initEnv(){
+        dubboService = new DubboService();
+    }
     /**
      * 测试方法拦截器、所有测试方法在执行开始、执行中、执行完成都会在此方法中完成
      * @param callBack
