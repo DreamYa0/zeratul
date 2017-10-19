@@ -181,4 +181,7 @@ public class Constants {
      * 预期值sql语句
      */
     public static final String ASSERT_SQL = "assertSql";
+
+	/** MySql驱动名称 */
+	public static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 }

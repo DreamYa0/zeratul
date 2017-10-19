@@ -17,7 +17,7 @@ public final class AnnotationUtils {
      * @param method 测试方法
      * @return       是否有
      */
-    public static boolean haveIgnoreAnnotation(Method method) {
+    public static boolean isIgnoreAnnotation(Method method) {
         Ignore ignore = method.getDeclaredAnnotation(Ignore.class);
         if (ignore == null) {
             return false;

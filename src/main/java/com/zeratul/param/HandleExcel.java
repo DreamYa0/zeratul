@@ -48,18 +48,15 @@ public class HandleExcel {
     }
 
     public boolean validateExcel(String filePath) {
-        if ((filePath == null)
-                || ((!isExcel2003(filePath)) && (!isExcel2007(filePath)))) {
+        boolean isFilePath = (filePath == null) || ((!isExcel2003(filePath)) && (!isExcel2007(filePath)));
+        if (isFilePath) {
             this.errorInfo = "文件名不是excel格式";
-
             return false;
         }
         System.out.println(filePath);
-
         File file = new File(filePath);
-        if ((file == null) || (!file.exists())) {
+        if ((!file.exists())) {
             this.errorInfo = "文件不存在";
-
             return false;
         }
         return true;
@@ -67,7 +64,6 @@ public class HandleExcel {
 
     public List<List<String>> read(String filePath, String sheetName) {
         List<List<String>> dataLst = Lists.newArrayList();
-
         InputStream is = null;
         if (!validateExcel(filePath)) {
             System.out.println(this.errorInfo);
@@ -79,47 +75,41 @@ public class HandleExcel {
         }
         try {
             File file = new File(filePath);
-
             is = new FileInputStream(file);
-
-            Workbook wb = null;
+            Workbook wb;
             if (isExcel2003) {
                 wb = new HSSFWorkbook(is);
             } else {
                 wb = new XSSFWorkbook(is);
             }
             dataLst = read(wb, sheetName);
-
             is.close();
         } catch (IOException e) {
             e.printStackTrace();
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e1) {
-                    is = null;
-
-                    e1.printStackTrace();
-                }
-            }
+            is = getInputStream(is);
         } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    is = null;
-
-                    e.printStackTrace();
-                }
-            }
+            is = getInputStream(is);
         }
         return dataLst;
+    }
+
+    private InputStream getInputStream(InputStream is) {
+        if (is != null) {
+            try {
+                is.close();
+            } catch (IOException e1) {
+                is = null;
+
+                e1.printStackTrace();
+            }
+        }
+        return is;
     }
 
     public List<List<String>> read(InputStream inputStream, boolean isExcel2003) {
         List<List<String>> dataLst = null;
         try {
-            Workbook wb = null;
+            Workbook wb;
             if (isExcel2003) {
                 wb = new HSSFWorkbook(inputStream);
             } else {
@@ -134,9 +124,7 @@ public class HandleExcel {
 
     private List<List<String>> read(Workbook wb, int sheetIndex) {
         List<List<String>> dataLst = Lists.newArrayList();
-
         Sheet sheet = wb.getSheetAt(sheetIndex);
-
         this.totalRows = sheet.getPhysicalNumberOfRows();
         if ((this.totalRows >= 1) && (sheet.getRow(0) != null)) {
             this.totalCells = sheet.getRow(0).getLastCellNum(); // 获取最后一个不为空的列是第几个
@@ -232,22 +220,21 @@ public class HandleExcel {
 
     /**
      * 按竖行方式读取数据
-     *
      * @param filePath
      * @param sheetName
      * @return
      */
     public List<Map<String, Object>> readDataByRow(String filePath, String sheetName) {
-        List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> datas = new ArrayList<>();
         List<List<String>> lists = read(filePath, sheetName);
-        List<String> listTitel = new ArrayList<String>();
+        List<String> listTitel = new ArrayList<>();
         // 获取标题
         for (int j = 0; j < lists.size(); j++) {
             listTitel.add(lists.get(j).get(0));
         }
         // 获取数据
         for (int i = 1; i < lists.get(0).size(); i++) {
-            Map<String, Object> dataMap = new HashMap<String, Object>();
+            Map<String, Object> dataMap = new HashMap<>();
             // 所有属性都是空串才不算测试用例
             if (!isEmptyTestCase(lists, i, listTitel.size())) {
                 for (int k = 0; k < listTitel.size(); k++) {
@@ -262,7 +249,6 @@ public class HandleExcel {
 
     /**
      * 所有属性都是空串才不算测试用例
-     *
      * @param lists
      * @param i
      * @param listTitelSize

@@ -19,6 +19,7 @@
         <mybatis.version>3.4.1</mybatis.version>
         <mybatis.spring.version>1.1.1</mybatis.spring.version>
         <assured.version>3.0.3</assured.version>
+        <jodd.version>3.9.1</jodd.version>
     </properties>
 
     <dependencies>
@@ -152,6 +153,48 @@
             <artifactId>commons-email</artifactId>
             <version>1.4</version>
         </dependency>
+        <!-- jodd相关jar包开始 -->
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-db</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-core</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-props</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-http</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-json</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-vtor</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-mail</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-bean</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
+        <!-- jodd相关jar包开始 -->
         <!-- 工具类相关jar包结束 -->
         <dependency>
             <groupId>com.alibaba</groupId>

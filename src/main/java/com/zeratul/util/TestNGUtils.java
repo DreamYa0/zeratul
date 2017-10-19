@@ -11,9 +11,9 @@ import java.util.Map;
  * @title TestNG框架相关处理工具类
  * @Date 2017/8/27 15:37
  */
-public final class TestNGUtils {
+public final class TestngUtils {
 
-    private TestNGUtils() {}
+    private TestngUtils() {}
 
     /**
      * 从TestNG测试结果上下文中获取测试方法

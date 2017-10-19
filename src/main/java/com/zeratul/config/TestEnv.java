@@ -7,8 +7,10 @@ package com.zeratul.config;
  * @Date 2017/8/27 17:47
  */
 public enum TestEnv {
-
-    dev,//开发环境
-    test,//测试环境
-    stage,//预发布
+    //开发环境
+    dev,
+    //测试环境
+    test,
+    //预发布
+    stage,
 }
